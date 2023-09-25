@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="Calendarstyle.css" />
+  </head>
+  <body>
+    <div class="fix-container">
+      <div class="calendar">
+        <div class="header">
+          <div class="year-month"></div>
+          <div class="button-group">
+            <button class="navyBtn" onclick="location.href='Diaryindex.html'">
+              Write Diary
+            </button>
+            <div class="nav">
+              <button class="nav-btn go-prev" onclick="prevMonth()">
+                &lt;
+              </button>
+              <button class="nav-btn go-today" onclick="goToday()">
+                Today
+              </button>
+              <button class="nav-btn go-next" onclick="nextMonth()">
+                &gt;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="days">
+          <div class="day">SUN</div>
+          <div class="day">MON</div>
+          <div class="day">TUE</div>
+          <div class="day">WED</div>
+          <div class="day">THU</div>
+          <div class="day">FRI</div>
+          <div class="day">SAT</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+    </div>
+    <script src="Calendarapp.js"></script>
+  </body>
+</html>

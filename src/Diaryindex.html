@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="Diarystyle.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>My Diary</h1>
+      <div class="button-group">
+        <button class="navyBtn" onclick="location.href='Calendarindex.html'">
+          Home
+        </button>
+        <button class="navyBtn" onclick="addEntry()">일기 작성</button>
+      </div>
+    </div>
+    <div>
+      <textarea
+        id="entryText"
+        placeholder="오늘의 일기를 작성하세요!"
+      ></textarea>
+    </div>
+    <div class="Iconlist">
+      아이콘을 선택해주세요.
+      <select size="8" id="Iconlist" name="Iconlist">
+        <option value="&#127934;">테니스 &#127934;</option>
+        <option value="&#127923;">볼링 &#127923;</option>
+        <option value="&#127939;">러닝 &#127939;</option>
+        <option value="&#127947;">헬스 &#127947;</option>
+        <option value="&#127948;">골프 &#127948;</option>
+        <option value="&#127955;">탁구 &#127955;</option>
+        <option value="&#127936;">농구 &#127936;</option>
+        <option value="&#127946;">수영 &#127946;</option>
+        <option value="&#128694;">산책 &#128694;</option>
+        <option value="&#128693;">사이클 &#128693;</option>
+      </select>
+    </div>
+    <div id="entries"></div>
+    <span class="this"></span>
+    <script src="Diaryapp.js"></script>
+  </body>
+</html>
