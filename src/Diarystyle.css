@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+textarea {
+  font-size: 20px;
+  font-weight: bolder;
+  position: fixed;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 50vh;
+}
+
+.Iconlist {
+  font-size: 25px;
+  font-weight: bold;
+  width: 270px;
+  height: 100px;
+  position: absolute;
+  left: 10%;
+  top: 10%;
+}
+
+select {
+  font-size: 20px;
+  width: 265px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 200px;
+}
+
+.navyBtn {
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #0074d9;
+  color: white;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+}
+
+.button-group .navyBtn {
+  margin-left: 10px;
+}
+
+.entry {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
