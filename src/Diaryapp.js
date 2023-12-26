@@ -1,3 +1,5 @@
+//Diaryapp.js
+
 function addEntry() {
   var entryText = document.getElementById("entryText").value;
   if (entryText.trim() === "") {
@@ -16,6 +18,7 @@ function addEntry() {
     icon: icon,
     entry: entryText,
   };
+
   // 해당 날짜에 일기 데이터가 있는지 확인
   var diaryEntries = loadDiaryEntries();
   if (!diaryEntries[date]) {
@@ -23,6 +26,7 @@ function addEntry() {
   }
   // 현재 날짜에 일기 데이터 추가
   diaryEntries[date].push(diaryEntry);
+
   // 업데이트된 일기 목록을 스토리지에 저장
   localStorage.setItem("DiaryEntries", JSON.stringify(diaryEntries));
   window.location.href = "Calendarindex.html";
