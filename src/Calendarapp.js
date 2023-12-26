@@ -1,4 +1,4 @@
-let date = new Date();
+let currentDate = new Date();
 
 function getCurrentDate() {
   var today = new Date();
@@ -7,109 +7,99 @@ function getCurrentDate() {
   var day = String(today.getDate()).padStart(2, "0");
   return year + "-" + month + "-" + day;
 }
-const renderCalendar = () => {
-  //달력 함수
-  const viewYear = date.getFullYear();
-  const viewMonth = date.getMonth();
 
-  //현재 연도, 월
-  document.querySelector(".year-month").textContent = `${viewYear}년 ${
-    viewMonth + 1
-  }월`;
+function getLatestIconForDate(targetDate, diaryEntries) {
+  var targetDateString =
+    targetDate.getFullYear() +
+    "-" +
+    String(targetDate.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(targetDate.getDate()).padStart(2, "0");
 
-  //지난달 마지막날, 이번달 마지막날
-  const prevLast = new Date(viewYear, viewMonth, 0); //1231
-  const thisLast = new Date(viewYear, viewMonth + 1, 0); //0131
-
-  const PLDate = prevLast.getDate();
-  const PLDay = prevLast.getDay();
-
-  const TLDate = thisLast.getDate();
-  const TLDay = thisLast.getDay();
-
-  const prevDates = [];
-  const thisDates = [...Array(TLDate + 1).keys()].slice(1, TLDate + 1);
-  const nextDates = [];
-
-  console.log(thisDates);
-  if (PLDay !== 6) {
-    for (let i = 0; i < PLDay + 1; i++) {
-      prevDates.unshift(PLDate - i);
-    }
-  }
-
-  for (let i = 1; i < 7 - TLDay; i++) {
-    nextDates.push(i);
-  }
-
-  const dates = prevDates.concat(thisDates, nextDates);
-  const firstDateIndex = dates.indexOf(1);
-  const lastDateIndex = dates.lastIndexOf(TLDate);
-
-  dates.forEach((date, i) => {
-    const condition =
-      i >= firstDateIndex && i < lastDateIndex + 1 ? "this" : "other";
-    dates[
-      i
-    ] = `<div class="date"><span class=${condition}>${date}</span></div>`;
-  });
-  document.querySelector(".dates").innerHTML = dates.join("");
-
-  const today = new Date();
-  const Icon = getLatestIcon();
-
-  if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
-    for (let dateCell of document.querySelectorAll(".this")) {
-      const dateNumber = parseInt(dateCell.innerText);
-
-      if (dateNumber === today.getDate()) {
-        dateCell.classList.add("today");
-
-        if (Icon) {
-          const iconElement = document.createElement("span");
-          iconElement.classList.add("icon");
-          iconElement.innerHTML = Icon;
-          dateCell.appendChild(iconElement);
-        }
-        break;
-      }
-    }
-  }
-};
-renderCalendar();
-
-function getLatestIcon() {
-  var diaryEntries = loadDiaryEntries();
-
-  if (Object.keys(diaryEntries).length === 0) {
-    return null;
-  }
-
-  var currentDate = getCurrentDate();
-  if (diaryEntries[currentDate] && diaryEntries[currentDate].length > 0) {
+  if (
+    diaryEntries[targetDateString] &&
+    diaryEntries[targetDateString].length > 0
+  ) {
     var latestEntry =
-      diaryEntries[currentDate][diaryEntries[currentDate].length - 1];
+      diaryEntries[targetDateString][diaryEntries[targetDateString].length - 1];
     return latestEntry.icon;
   }
   return null;
 }
-const prevMonth = () => {
-  date.setDate(1);
-  date.setMonth(date.getMonth() - 1);
-  renderCalendar();
+
+const renderCalendar = (diaryEntries) => {
+  const viewYear = currentDate.getFullYear();
+  const viewMonth = currentDate.getMonth();
+
+  document.querySelector(".year-month").textContent = `${viewYear}년 ${
+    viewMonth + 1
+  }월`;
+
+  const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+  const lastDate = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+  const datesContainer = document.querySelector(".dates");
+  datesContainer.innerHTML = ""; // 달력 요소 초기화
+
+  for (let i = 0; i < firstDay; i++) {
+    const prevMonthLastDate = new Date(viewYear, viewMonth, 0).getDate();
+    const prevMonthDate = prevMonthLastDate - firstDay + i + 1;
+    const dateElement = document.createElement('div');
+    dateElement.classList.add('date', 'other');
+    dateElement.innerHTML = `<span>${prevMonthDate}</span>`;
+    datesContainer.appendChild(dateElement);
+  }
+  
+  for (let i = 1; i <= lastDate; i++) {
+    const condition = i === currentDate.getDate() && viewMonth === currentDate.getMonth() ? "today" : "current-month";
+    const latestIcon = getLatestIconForDate(new Date(viewYear, viewMonth, i), diaryEntries);
+
+    const dateElement = document.createElement('div');
+    dateElement.classList.add('date', condition);
+    dateElement.innerHTML = `<span>${i}</span>`;
+    if (latestIcon) {
+      const iconElement = document.createElement('span');
+      iconElement.classList.add('icon');
+      iconElement.innerHTML = latestIcon;
+      dateElement.appendChild(iconElement);
+    }
+
+    datesContainer.appendChild(dateElement);
+  }
+
+  const remainingDays = 42 - (firstDay + lastDate);
+  for (let i = 1; i <= remainingDays; i++) {
+    const nextMonthDate = new Date(viewYear, viewMonth + 1, i).getDate();
+    const dateElement = document.createElement('div');
+    dateElement.classList.add('date', 'other');
+    dateElement.innerHTML = `<span>${nextMonthDate}</span>`;
+    datesContainer.appendChild(dateElement);
+  }
 };
+
+const renderCalendarWithPreviousData = () => {
+  const diaryEntries = loadDiaryEntries();
+  renderCalendar(diaryEntries);
+};
+
+window.onload = renderCalendarWithPreviousData;
+
+const loadDiaryEntries = () => {
+  var diaryEntries = JSON.parse(localStorage.getItem("DiaryEntries")) || {};
+  return diaryEntries;
+};
+
+const prevMonth = () => {
+  currentDate.setMonth(currentDate.getMonth() - 1);
+  renderCalendarWithPreviousData();
+};
+
 const nextMonth = () => {
-  date.setDate(1);
-  date.setMonth(date.getMonth() + 1);
-  renderCalendar();
+  currentDate.setMonth(currentDate.getMonth() + 1);
+  renderCalendarWithPreviousData();
 };
 
 const goToday = () => {
-  date = new Date();
-  renderCalendar();
+  currentDate = new Date();
+  renderCalendarWithPreviousData();
 };
-
-function loadDiaryEntries() {
-  var diaryEntries = JSON.parse(localStorage.getItem("DiaryEntries")) || {};
-  return diaryEntries;
-}
