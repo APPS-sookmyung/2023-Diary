@@ -70,6 +70,17 @@ body {
     cursor: pointer;
     margin-left: -5px; 
     position: relative;
-    left: -420px; 
+    left: -130px; 
 }
 
+.delete-calendar {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: -5px; 
+    position: relative;
+    right: 270px;
+}
