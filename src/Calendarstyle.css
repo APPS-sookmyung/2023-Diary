@@ -110,6 +110,17 @@ body {
   position: relative;
 }
 
+.current-month {
+  cursor: pointer;
+  
+}
+
+.other-month {
+  opacity: 0.5; 
+  pointer-events: none; 
+  z-index: -1;
+}
+
 .day:nth-child(7n + 1),
 .date:nth-child(7n + 1) {
   color: #d13e3e;
@@ -149,4 +160,17 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 40px;
+}
+
+.deleteBtn {
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: #ff4d4d;
+  color: white;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
