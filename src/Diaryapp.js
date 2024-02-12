@@ -31,7 +31,7 @@ function addEntry() {
 
   localStorage.setItem("DiaryEntries", JSON.stringify(diaryEntries));
 
-  window.location.href = "Calendarindex.html"; // Always redirect to the Calendar page after adding an entry
+  window.location.href = "index.html"; // Always redirect to the Calendar page after adding an entry
 }
 
 function getCurrentDate() {
