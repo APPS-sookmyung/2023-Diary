@@ -31,7 +31,7 @@ function addEntry() {
 
   localStorage.setItem("DiaryEntries", JSON.stringify(diaryEntries));
 
-  window.location.href = "index.html"; // Always redirect to the Calendar page after adding an entry
+  window.location.href = "index.html"; 
 }
 
 function getCurrentDate() {
@@ -46,3 +46,7 @@ function loadDiaryEntries() {
   var diaryEntries = JSON.parse(localStorage.getItem("DiaryEntries")) || {};
   return diaryEntries;
 }
+
+document.getElementById('userSelect').addEventListener('focus', function() {
+  this.style.height = '20vh';
+});
