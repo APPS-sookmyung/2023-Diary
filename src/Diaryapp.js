@@ -47,6 +47,6 @@ function loadDiaryEntries() {
   return diaryEntries;
 }
 
-document.getElementById('userSelect').addEventListener('focus', function() {
-  this.style.height = '20vh';
+document.getElementById('entryText').addEventListener('focus', function() {
+  document.getElementById('userSelect').style.height = '20vh';
 });
