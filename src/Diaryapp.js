@@ -47,6 +47,8 @@ function loadDiaryEntries() {
   return diaryEntries;
 }
 
-document.getElementById('entryText').addEventListener('focus', function() {
-  document.getElementById('userSelect').style.height = '20vh';
-});
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  document.getElementById('entryText').addEventListener('focus', function() {
+    document.getElementById('userSelect').style.height = '17vh';
+  });
+}
