@@ -82,16 +82,6 @@ const renderCalendar = (diaryEntries) => {
     dateElement.innerHTML = `<span>${nextMonthDate}</span>`;
     datesContainer.appendChild(dateElement);
   }
-
-  document.addEventListener("DOMContentLoaded", function(){
-    const startBtn = document.getElementById("startBtn");
-    const guideContainer = document.querySelector(".guide-container");
-  
-    startBtn.addEventListener("click", function (){
-      console.log("Start button clicked!");
-      guideContainer.style.display="none";
-    });
-  });
 };
 
 
