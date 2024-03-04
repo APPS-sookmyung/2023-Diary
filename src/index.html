@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="Calendarstyle.css" />
+  </head>
+  <body>
+    <div class="guide-container">
+      <div class="guide">
+        <h1>나만의 운동일지를 기록해보세요.</h1>
+        <button id="startBtn">시작하기</button>
+      </div>
+    </div>
+    <div class="fix-container">
+      <div class="calendar">
+        <div class="header">
+          <div class="year-month"></div>
+          <div>
+            <button class="deleteBtn" onclick="deleteSelectedEmoji()">Delete Emoji</button>
+         </div>
+          <div class="button-group">
+            <button class="navyBtn" onclick="location.href='CheckDiary.html'">
+              Check Diary
+            </button>
+            <button class="navyBtn" onclick="location.href='Diaryindex.html'">
+              Write Diary
+            </button>
+            <div class="nav">
+              <button class="nav-btn go-prev" onclick="prevMonth()">
+                &lt;
+              </button>
+              <button class="nav-btn go-today" onclick="goToday()">
+                Today
+              </button>
+              <button class="nav-btn go-next" onclick="nextMonth()">
+                &gt;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="days">
+          <div class="day">SUN</div>
+          <div class="day">MON</div>
+          <div class="day">TUE</div>
+          <div class="day">WED</div>
+          <div class="day">THU</div>
+          <div class="day">FRI</div>
+          <div class="day">SAT</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+    </div>
+    <script src="Calendarapp.js"></script>
+  </body>
+</html>
